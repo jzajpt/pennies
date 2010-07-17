@@ -1,4 +1,4 @@
-= pennies
+= Pennies
 
 Pennies handles your money and currency needs. Support Mongoid and MongoMapper.
 
