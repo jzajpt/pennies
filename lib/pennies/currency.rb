@@ -49,10 +49,10 @@ module Pennies
 end
 
 #              Code, Name,                   Symbol, Format
-currencies = [["CZK", "Czech Koruna",         "Kč",  "%n %s"],
-              ["USD", "United States Dollar", "US$", "%s%n"],
-              ["EUR", "Euro",                 "€",   "%s%n"],
-              ["GBP", "Pound Sterling",       "£",   "%s%n"],
-              ["JPY", "Japanese Yen",         "¥",   "%s%n"]]
+currencies = [[:CZK, "Czech Koruna",         "Kč",  "%n %s"],
+              [:USD, "United States Dollar", "US$", "%s%n"],
+              [:EUR, "Euro",                 "€",   "%s%n"],
+              [:GBP, "Pound Sterling",       "£",   "%s%n"],
+              [:JPY, "Japanese Yen",         "¥",   "%s%n"]]
 
 Pennies::Currency.currencies = currencies.map { |data| Pennies::Currency.new(*data) }
