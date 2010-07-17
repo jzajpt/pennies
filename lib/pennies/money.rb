@@ -41,7 +41,7 @@ module Pennies
       if @currency.is_a?(Currency) && @currency.format
         value = "%.2f" % (@cents / 100.0)
         @currency.format.gsub('%s', @currency.sign).
-                         gsub('%c', @currency.code).
+                         gsub('%c', @currency.code.to_s).
                          gsub('%n', value)
       else
         "%.2f #{@currency}" % (@cents / 100.0)
