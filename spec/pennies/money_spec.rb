@@ -78,34 +78,70 @@ describe Pennies::Money, "instance" do
 
   describe "comparing amounts" do
 
-    it "returns true when both objects have same amount and currency" do
-      amount = Pennies::Money.new(50000, :EUR)
-      amount2 = Pennies::Money.new(50000, :EUR)
-      amount.should == amount2
+    describe "<" do
+
+      it "returns true when it is less than" do
+        amount = Pennies::Money.new(40000, :EUR)
+        amount2 = Pennies::Money.new(50000, :EUR)
+        amount.should < amount2
+      end
+
+      it "returns false when it is not less than" do
+        amount = Pennies::Money.new(99000, :EUR)
+        amount2 = Pennies::Money.new(50000, :EUR)
+        amount.should_not < amount2
+      end
+
+      describe ">" do
+
+        it "returns true when it is less than" do
+          amount = Pennies::Money.new(80000, :EUR)
+          amount2 = Pennies::Money.new(30000, :EUR)
+          amount.should > amount2
+        end
+
+        it "returns false when it is not less than" do
+          amount = Pennies::Money.new(1000, :EUR)
+          amount2 = Pennies::Money.new(50000, :EUR)
+          amount.should_not > amount2
+        end
+
+      end
+
     end
 
-    it "returns false when both objects have same amount but different currency" do
-      amount = Pennies::Money.new(50000, :EUR)
-      amount2 = Pennies::Money.new(50000, :USD)
-      amount.should_not == amount2
-    end
+    describe "for equality" do
 
-    it "returns false when both objects have same currency but different amount" do
-      amount = Pennies::Money.new(3000, :USD)
-      amount2 = Pennies::Money.new(50000, :USD)
-      amount.should_not == amount2
-    end
+      it "returns true when both objects have same amount and currency" do
+        amount = Pennies::Money.new(50000, :EUR)
+        amount2 = Pennies::Money.new(50000, :EUR)
+        amount.should == amount2
+      end
 
-    it "returns false when both objects have different amount and currency" do
-      amount = Pennies::Money.new(3000, :USD)
-      amount2 = Pennies::Money.new(50000, :EUR)
-      amount.should_not == amount2
-    end
+      it "returns false when both objects have same amount but different currency" do
+        amount = Pennies::Money.new(50000, :EUR)
+        amount2 = Pennies::Money.new(50000, :USD)
+        amount.should_not == amount2
+      end
 
-    it "returns false when other object is not Pennies::Money instance" do
-      amount = Pennies::Money.new(3000, :USD)
-      amount2 = 50000
-      amount.should_not == amount2
+      it "returns false when both objects have same currency but different amount" do
+        amount = Pennies::Money.new(3000, :USD)
+        amount2 = Pennies::Money.new(50000, :USD)
+        amount.should_not == amount2
+      end
+
+      it "returns false when both objects have different amount and currency" do
+        amount = Pennies::Money.new(3000, :USD)
+        amount2 = Pennies::Money.new(50000, :EUR)
+        amount.should_not == amount2
+      end
+
+      it "returns false when other object is not Pennies::Money instance" do
+        amount = Pennies::Money.new(3000, :USD)
+        amount2 = 50000
+        amount.should_not == amount2
+      end
+
     end
 
   end

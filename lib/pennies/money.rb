@@ -8,6 +8,8 @@ module Pennies
 
     include Mongo::MoneyExtensions
 
+    include Comparable
+
     attr_accessor :cents
     attr_accessor :currency
 
@@ -53,6 +55,11 @@ module Pennies
       o.is_a?(Money) &&
         @cents == o.cents &&
         @currency == o.currency
+    end
+
+    # Comparision operator for Comparable mixin.
+    def <=>(o)
+      self.cents <=> o.cents
     end
 
     # Multiply amount by a number.
