@@ -30,7 +30,8 @@ module Pennies
 
     # Return an array with cents amount and currency code.
     def to_a
-      [@cents, @currency]
+      code = @currency.respond_to?(:code) ? @currency.code : @currency
+      [@cents, code]
     end
 
     # Return a cents amount.

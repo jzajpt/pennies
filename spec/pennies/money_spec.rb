@@ -167,9 +167,9 @@ describe Pennies::Money, "instance" do
 
   describe "#to_a" do
 
-    it "returns array with cents amount and currency" do
+    it "returns array with cents amount and currency code" do
       amount = Pennies::Money.new(500, :CZK)
-      amount.to_a.should == [500, Pennies::Currency.find(:CZK)]
+      amount.to_a.should == [500, :CZK]
     end
 
   end
@@ -201,8 +201,14 @@ describe Pennies::Money, "Mongo extensions" do
 
     it "given Pennies::Money returns array" do
       amount = Pennies::Money.new(10000, :EUR)
-      Pennies::Money.set(amount).should == [10000, Pennies::Currency.find(:EUR)]
+      Pennies::Money.set(amount).should == [10000, :EUR]
     end
+
+    it "given Pennies::Money with 0 returns array" do
+      amount = Pennies::Money.new(0, :USD)
+      Pennies::Money.set(amount).should == [0, :USD]
+    end
+
 
     it "given string returns array without currency set" do
       Pennies::Money.set("30").should == [3000, nil]
