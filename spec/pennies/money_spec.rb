@@ -127,6 +127,18 @@ describe Pennies::Money, "instance" do
 
       end
 
+      describe "sort" do
+
+        it "should convert other amounts" do
+          amount = Pennies::Money.new(1000, :EUR)
+          amount2 = Pennies::Money.new(1000, :CZK)
+          Pennies.exchange_bank.should_receive(:convert).with(amount2, :EUR).and_return(Pennies::Money.new(25, :EUR))
+
+          [amount, amount2].sort
+        end
+
+      end
+
     end
 
     describe "for equality" do

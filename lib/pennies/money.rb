@@ -66,6 +66,9 @@ module Pennies
 
     # Comparision operator for Comparable mixin.
     def <=>(o)
+      unless @currency == o.currency
+        o = o.to_currency(@currency.code)
+      end
       self.cents <=> o.cents
     end
 
