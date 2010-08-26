@@ -74,6 +74,25 @@ describe Pennies::Money, "instance" do
       sum.currency.should == Pennies::Currency.find(:CZK)
     end
 
+    context "given two amounts with different currencies" do
+
+      let(:amount_usd) { Pennies::Money.new(1000, :USD) }
+      let(:amount_eur) { Pennies::Money.new(1000, :EUR) }
+      let(:exchanged_amount) { Pennies::Money.new(1500, :USD) }
+
+      it "it exchanges other amount" do
+        Pennies.exchange_bank.should_receive(:convert).with(amount_eur, :USD).and_return(exchanged_amount)
+        sum = amount_usd + amount_eur
+      end
+
+      it "returns a sum" do
+        Pennies.exchange_bank.stub(:convert).with(amount_eur, :USD).and_return(exchanged_amount)
+        sum = amount_usd + amount_eur
+        sum.should == (amount_usd + exchanged_amount)
+      end
+
+    end
+
   end
 
   describe "comparing amounts" do
@@ -168,7 +187,7 @@ describe Pennies::Money, "instance" do
 
     it "returns formatted string with a currency code" do
       amount = Pennies::Money.new(5000, :USD)
-      amount.to_s.should == "50.00 USD"
+      amount.to_s.should == "US$50.00"
     end
 
   end

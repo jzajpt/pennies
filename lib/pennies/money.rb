@@ -50,6 +50,12 @@ module Pennies
       end
     end
 
+    # Converts money amount to a new currency using Pennies.exchange_bank.
+    def to_currency(new_currency)
+      code = new_currency.respond_to?(:code) ? new_currency.code : new_currency
+      Pennies.exchange_bank.convert(self, code)
+    end
+
     # Compare two objects for same cents amount and currency.
     def ==(o)
       o.is_a?(Money) &&
@@ -71,6 +77,9 @@ module Pennies
     def +(o)
       if o.respond_to?(:cents) && o.currency == @currency
         Money.new(@cents + o.cents, @currency)
+      elsif o.respond_to?(:cents) && o.currency != @currency
+        exchanged = o.to_currency(@currency)
+        Money.new(@cents + exchanged.cents, @currency)
       elsif o.respond_to?(:to_i)
         Money.new(@cents + o.to_i, @currency)
       end
