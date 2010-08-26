@@ -53,6 +53,7 @@ currencies = [[:CZK, "Czech Koruna",         "Kč",  "%n %s"],
               [:USD, "United States Dollar", "US$", "%s%n"],
               [:EUR, "Euro",                 "€",   "%s%n"],
               [:GBP, "Pound Sterling",       "£",   "%s%n"],
-              [:JPY, "Japanese Yen",         "¥",   "%s%n"]]
+              [:JPY, "Japanese Yen",         "¥",   "%s%n"],
+              [:RUB, "Russian Ruble",        "RUB", "%n %s"]]
 
 Pennies::Currency.currencies = currencies.map { |data| Pennies::Currency.new(*data) }
