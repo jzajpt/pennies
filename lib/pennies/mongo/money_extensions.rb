@@ -17,7 +17,7 @@ module Pennies
           # Rails.logger.debug "CurrencyAmount#set(#{value.inspect})"
           if value.is_a?(self)
             value.to_a
-          elsif value.is_a?(Integer)
+          elsif value.is_a?(Numeric)
             [value * 100, nil]
           elsif value.is_a?(String)
             [value.to_i * 100, nil]
