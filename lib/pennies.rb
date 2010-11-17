@@ -14,6 +14,7 @@ module Pennies
 end
 
 require 'pennies/exchange_bank'
+require 'pennies/validators/currency_code_validator'
 
 # Dummy exchange bank
 Pennies.exchange_bank = Pennies::ExchangeBank.new
