@@ -52,9 +52,9 @@ module Pennies
     end
 
     # Converts money amount to a new currency using Pennies.exchange_bank.
-    def to_currency(new_currency)
+    def to_currency(new_currency, options = {})
       code = new_currency.respond_to?(:code) ? new_currency.code : new_currency
-      Pennies.exchange_bank.convert(self, code)
+      Pennies.exchange_bank.convert(self, code, options = {})
     end
 
     # Compare two objects for same cents amount and currency.
