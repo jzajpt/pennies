@@ -53,7 +53,7 @@ currencies = [[:CZK, "Czech Koruna",         "Kč",  "%n %s"],
               [:USD, "United States Dollar", "US$", "%s%n"],
               [:CAD, "Canadian Dollar",      "C$",  "%s%n"],
               [:AUD, "Australian Dollar",    "A$",  "%s%n"],
-              [:PLN, "Polish złoty",         "PLN", "%n %s"]
+              [:PLN, "Polish złoty",         "PLN", "%n %s"],
               [:EUR, "Euro",                 "€",   "%s%n"],
               [:GBP, "Pound Sterling",       "£",   "%s%n"],
               [:JPY, "Japanese Yen",         "¥",   "%s%n"],
