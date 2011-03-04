@@ -81,6 +81,10 @@ module Pennies
     def +(o)
       if o.respond_to?(:cents) && o.currency == @currency
         Money.new(@cents + o.cents, @currency)
+      elsif o.respond_to?(:cents) && !o.currency
+        Money.new(@cents + o.cents, @currency)
+      elsif o.respond_to?(:cents) && !@currency && o.currency.present?
+        Money.new(@cents + o.cents, o.currency)
       elsif o.respond_to?(:cents) && o.currency != @currency
         exchanged = o.to_currency(@currency)
         Money.new(@cents + exchanged.cents, @currency)
